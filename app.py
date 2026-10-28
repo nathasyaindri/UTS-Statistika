@@ -146,11 +146,11 @@ for col in selected_cols:
         if show_box:
             st.markdown("**Boxplot**")
             fig, ax = plt.subplots()
-ax.boxplot(series.dropna())
-ax.set_title(f"Boxplot {col}")
-ax.set_ylabel(col)
-st.pyplot(fig)
-plt.close(fig)
+            ax.boxplot(series.dropna())
+            ax.set_title(f"Boxplot {col}")
+            ax.set_ylabel(col)
+            st.pyplot(fig)
+            plt.close(fig)
         if show_freq:
             st.markdown("**Tabel frekuensi**")
             freq = series.value_counts(dropna=False).sort_index().rename_axis("Nilai").reset_index(name="Frekuensi")
