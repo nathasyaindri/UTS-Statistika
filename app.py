@@ -145,7 +145,12 @@ for col in selected_cols:
             st.caption("Batang menunjukkan banyaknya kemunculan setiap nilai; untuk data kontinu, pertimbangkan pengelompokan ke interval.")
         if show_box:
             st.markdown("**Boxplot**")
-            st.box_chart(pd.DataFrame({col: series}), y=col, use_container_width=True)
+            fig, ax = plt.subplots()
+ax.boxplot(series.dropna())
+ax.set_title(f"Boxplot {col}")
+ax.set_ylabel(col)
+st.pyplot(fig)
+plt.close(fig)
         if show_freq:
             st.markdown("**Tabel frekuensi**")
             freq = series.value_counts(dropna=False).sort_index().rename_axis("Nilai").reset_index(name="Frekuensi")
